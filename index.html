@@ -2,85 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>চলনা!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For You ❤️</title>
     <style>
-        /* Pinkish Theme and Reset */
-        body {
+        /* Import a pretty font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Prevents scrollbars when the button jumps */
+            min-height: 100vh;
+            /* Animated gradient background */
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #ffb1c1, #ffd1ff);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            touch-action: manipulation; /* Prevents double-tap zooming on mobile */
         }
 
-        /* Center Box */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Hearts Container */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: floatUp linear infinite;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg) scale(1.5); opacity: 0; }
+        }
+
+        /* Main Glass Card */
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(255, 105, 135, 0.2);
+            background: rgba(255, 255, 255, 0.45);
+            padding: 40px 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(255, 105, 135, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             position: relative;
             z-index: 10;
-            backdrop-filter: blur(10px);
-            max-width: 90%;
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Cute GIF styling */
+        .cute-gif {
+            width: 100%;
+            max-width: 180px;
+            border-radius: 15px;
+            pointer-events: none;
         }
 
         h1 {
             color: #ff4757;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(255, 71, 87, 0.1);
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.1);
+            line-height: 1.3;
         }
 
-        /* Button Styling */
+        /* Buttons Container */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
             align-items: center;
+            gap: 15px;
+            width: 100%;
+            height: 60px;
         }
 
         button {
-            padding: 15px 40px;
-            font-size: 1.5rem;
+            padding: 12px 30px;
+            font-size: clamp(1rem, 4vw, 1.2rem);
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            width: 120px;
+            z-index: 20;
         }
 
+        /* The 'Ha' Button */
         #btn-yes {
-            background-color: #ff4757;
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            animation: pulse 2s infinite;
         }
 
-        #btn-yes:hover {
-            transform: scale(1.1);
-            background-color: #ff6b81;
-            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 4px 25px rgba(255, 71, 87, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
         }
 
+        #btn-yes:active {
+            transform: scale(0.95);
+        }
+
+        /* The 'Na' Button */
         #btn-no {
-            background-color: #ffffff;
+            background: white;
             color: #ff4757;
             border: 2px solid #ff4757;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            /* Transition makes the jumping smooth */
-            transition: left 0.3s ease, top 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: left 0.2s ease-out, top 0.2s ease-out; 
         }
 
         /* Success Message Container */
         .success-message {
             display: none;
-            animation: fadeIn 1s ease-in;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
         .success-message h2 {
@@ -90,30 +156,39 @@
         }
 
         .success-message p {
-            color: #ff6b81;
-            font-size: 1.2rem;
-            font-weight: bold;
+            color: #ff4757;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
+    <!-- Floating Background Hearts -->
+    <div class="hearts-bg" id="hearts-bg"></div>
+
     <div class="container">
+        <!-- Cute begging GIF -->
+        <img id="main-gif" class="cute-gif" src="https://media.tenor.com/ef3P1f_lVtkAAAAi/tkthao219-bubududu.gif" alt="Cute Bear Begging">
+        
+        <!-- The Question -->
         <h1 id="question">Ajke sondhai berobo? 🥺</h1>
         
+        <!-- The Buttons -->
         <div class="buttons" id="button-container">
             <button id="btn-yes">Ha</button>
             <button id="btn-no">Na</button>
         </div>
 
+        <!-- Hidden Success Message -->
         <div class="success-message" id="success-message">
             <h2>Yayyy! ❤️🎉</h2>
-            <p>Done! Get ready by evening. See you!</p>
+            <p>Done! Get ready by evening. See you! 🥰</p>
         </div>
     </div>
 
@@ -123,31 +198,55 @@
         const question = document.getElementById('question');
         const buttonContainer = document.getElementById('button-container');
         const successMessage = document.getElementById('success-message');
+        const mainGif = document.getElementById('main-gif');
+        const heartsBg = document.getElementById('hearts-bg');
 
-        // Function to make the "Na" button run away
+        // Create random floating hearts in the background
+        function createHearts() {
+            const heartArray = ['❤️', '💖', '💕', '🌸'];
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerText = heartArray[Math.floor(Math.random() * heartArray.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsBg.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Function to make the "Na" button run away strict boundary handling
         const moveButton = () => {
-            // Change position to fixed so it can go anywhere on the screen
             btnNo.style.position = 'fixed';
             
-            // Calculate max X and Y so the button doesn't go off-screen
-            const maxX = window.innerWidth - btnNo.offsetWidth - 20;
-            const maxY = window.innerHeight - btnNo.offsetHeight - 20;
+            // Get exact dimensions of the visible viewport (safest method for mobile)
+            const viewportWidth = document.documentElement.clientWidth;
+            const viewportHeight = document.documentElement.clientHeight;
             
-            // Generate random coordinates
-            const randomX = Math.floor(Math.random() * maxX) + 10;
-            const randomY = Math.floor(Math.random() * maxY) + 10;
+            // Get exact dimensions of the button
+            const btnWidth = btnNo.offsetWidth;
+            const btnHeight = btnNo.offsetHeight;
             
-            // Apply new coordinates
+            // Safe zone limits (15px padding away from absolute screen edges)
+            const safePadding = 15;
+            const maxX = viewportWidth - btnWidth - safePadding;
+            const maxY = viewportHeight - btnHeight - safePadding;
+            
+            // Generate coordinates tightly bound within the screen
+            const randomX = Math.max(safePadding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(safePadding, Math.floor(Math.random() * maxY));
+            
             btnNo.style.left = randomX + 'px';
             btnNo.style.top = randomY + 'px';
         };
 
-        // Trigger movement when mouse hovers over it (for computer/laptop)
+        // For PC/Laptop (Mouse)
         btnNo.addEventListener('mouseover', moveButton);
         
-        // Trigger movement when touched (for smartphones)
+        // For Mobile/Phone (Touch)
         btnNo.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Prevents clicking it accidentally on mobile
+            e.preventDefault(); // STOPS the click from registering
             moveButton();
         });
 
@@ -155,10 +254,10 @@
         btnYes.addEventListener('click', () => {
             question.style.display = 'none';
             buttonContainer.style.display = 'none';
-            successMessage.style.display = 'block';
+            btnNo.style.display = 'none'; 
             
-            // Optional: Remove the "Na" button completely so it stops flying around
-            btnNo.style.display = 'none';
+            successMessage.style.display = 'block';
+            mainGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         });
     </script>
 </body>
