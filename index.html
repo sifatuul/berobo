@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For You ❤️</title>
+    <title>For You</title>
     <style>
         /* Import a pretty font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -19,13 +19,12 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* Animated gradient background */
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #ffb1c1, #ffd1ff);
+            background: linear-gradient(45deg, #ffb6c1, #ffe4e1, #ffc0cb, #fff0f5);
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            touch-action: manipulation; /* Prevents double-tap zooming on mobile */
+            touch-action: manipulation;
         }
 
         @keyframes gradientBG {
@@ -34,8 +33,8 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Hearts Container */
-        .hearts-bg {
+        /* Floating Flowers Container */
+        .flowers-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -45,10 +44,10 @@
             pointer-events: none;
         }
 
-        .heart {
+        .flower {
             position: absolute;
             font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 182, 193, 0.7);
             animation: floatUp linear infinite;
             bottom: -50px;
         }
@@ -64,7 +63,7 @@
             background: rgba(255, 255, 255, 0.45);
             padding: 40px 20px;
             border-radius: 25px;
-            box-shadow: 0 8px 32px rgba(255, 105, 135, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 105, 135, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -78,18 +77,10 @@
             gap: 20px;
         }
 
-        /* Cute GIF styling */
-        .cute-gif {
-            width: 100%;
-            max-width: 180px;
-            border-radius: 15px;
-            pointer-events: none;
-        }
-
         h1 {
-            color: #ff4757;
+            color: #d87093;
             font-size: clamp(1.5rem, 6vw, 2.2rem);
-            text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.1);
+            text-shadow: 1px 1px 2px rgba(216, 112, 147, 0.1);
             line-height: 1.3;
         }
 
@@ -111,23 +102,21 @@
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            transition: all 0.2s ease;
             width: 120px;
             z-index: 20;
         }
 
         /* The 'Ha' Button */
         #btn-yes {
-            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            background: linear-gradient(45deg, #ff69b4, #ff85c0);
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transition: all 0.2s ease;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
-            50% { transform: scale(1.08); box-shadow: 0 4px 25px rgba(255, 71, 87, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
+        #btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
         }
 
         #btn-yes:active {
@@ -137,10 +126,11 @@
         /* The 'Na' Button */
         #btn-no {
             background: white;
-            color: #ff4757;
-            border: 2px solid #ff4757;
+            color: #ff69b4;
+            border: 2px solid #ff69b4;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: left 0.2s ease-out, top 0.2s ease-out; 
+            /* Smooth slide transition for the dodge effect */
+            transition: transform 0.2s ease-out; 
         }
 
         /* Success Message Container */
@@ -150,13 +140,13 @@
         }
 
         .success-message h2 {
-            color: #ff4757;
+            color: #d87093;
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
         .success-message p {
-            color: #ff4757;
+            color: #d87093;
             font-size: 1.1rem;
             font-weight: 600;
         }
@@ -169,26 +159,21 @@
 </head>
 <body>
 
-    <!-- Floating Background Hearts -->
-    <div class="hearts-bg" id="hearts-bg"></div>
+    <!-- Floating Background Flowers -->
+    <div class="flowers-bg" id="flowers-bg"></div>
 
     <div class="container">
-        <!-- Cute begging GIF -->
-        <img id="main-gif" class="cute-gif" src="https://media.tenor.com/ef3P1f_lVtkAAAAi/tkthao219-bubududu.gif" alt="Cute Bear Begging">
+        <h1 id="question">Ajke sondhai berobo?</h1>
         
-        <!-- The Question -->
-        <h1 id="question">Ajke sondhai berobo? 🥺</h1>
-        
-        <!-- The Buttons -->
         <div class="buttons" id="button-container">
             <button id="btn-yes">Ha</button>
             <button id="btn-no">Na</button>
         </div>
 
-        <!-- Hidden Success Message -->
         <div class="success-message" id="success-message">
-            <h2>Yayyy! ❤️🎉</h2>
-            <p>Done! Get ready by evening. See you! 🥰</p>
+            <h2>Yayyy!</h2>
+            <p>Done! Get ready by evening.</p>
+            <p>See you!</p>
         </div>
     </div>
 
@@ -198,55 +183,79 @@
         const question = document.getElementById('question');
         const buttonContainer = document.getElementById('button-container');
         const successMessage = document.getElementById('success-message');
-        const mainGif = document.getElementById('main-gif');
-        const heartsBg = document.getElementById('hearts-bg');
+        const flowersBg = document.getElementById('flowers-bg');
 
-        // Create random floating hearts in the background
-        function createHearts() {
-            const heartArray = ['❤️', '💖', '💕', '🌸'];
+        // Create random floating flowers
+        function createFlowers() {
+            const flowerArray = ['🌸', '🌼', '🌻', '🌺', '🌹', '🌷'];
             for (let i = 0; i < 15; i++) {
-                let heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerText = heartArray[Math.floor(Math.random() * heartArray.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heartsBg.appendChild(heart);
+                let flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.innerText = flowerArray[Math.floor(Math.random() * flowerArray.length)];
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                flowersBg.appendChild(flower);
             }
         }
-        createHearts();
+        createFlowers();
 
-        // Function to make the "Na" button run away strict boundary handling
+        // Variables to keep track of current movement position
+        let currentTransformX = 0;
+        let currentTransformY = 0;
+
+        // Function to make the "Na" button dodge slightly
         const moveButton = () => {
-            btnNo.style.position = 'fixed';
-            
-            // Get exact dimensions of the visible viewport (safest method for mobile)
             const viewportWidth = document.documentElement.clientWidth;
             const viewportHeight = document.documentElement.clientHeight;
+            const btnRect = btnNo.getBoundingClientRect();
             
-            // Get exact dimensions of the button
-            const btnWidth = btnNo.offsetWidth;
-            const btnHeight = btnNo.offsetHeight;
+            // Calculate original position (without previous transforms)
+            const originalLeft = btnRect.left - currentTransformX;
+            const originalTop = btnRect.top - currentTransformY;
+
+            // Generate a small jump: between -80px and +80px
+            let jumpX = (Math.random() * 160) - 80;
+            let jumpY = (Math.random() * 160) - 80;
+
+            // Make sure the jump is at least 40px away so it actually escapes her finger
+            if (Math.abs(jumpX) < 40) jumpX = jumpX < 0 ? -50 : 50;
+            if (Math.abs(jumpY) < 40) jumpY = jumpY < 0 ? -50 : 50;
+
+            let nextX = currentTransformX + jumpX;
+            let nextY = currentTransformY + jumpY;
+
+            // Screen boundaries padding
+            const safePadding = 20;
+
+            // Stop it from going off the left/right screen edges
+            if (originalLeft + nextX < safePadding) {
+                nextX = safePadding - originalLeft; 
+            } else if (originalLeft + nextX + btnRect.width > viewportWidth - safePadding) {
+                nextX = viewportWidth - btnRect.width - safePadding - originalLeft;
+            }
+
+            // Stop it from going off the top/bottom screen edges
+            if (originalTop + nextY < safePadding) {
+                nextY = safePadding - originalTop;
+            } else if (originalTop + nextY + btnRect.height > viewportHeight - safePadding) {
+                nextY = viewportHeight - btnRect.height - safePadding - originalTop;
+            }
+
+            // Update transform variables
+            currentTransformX = nextX;
+            currentTransformY = nextY;
             
-            // Safe zone limits (15px padding away from absolute screen edges)
-            const safePadding = 15;
-            const maxX = viewportWidth - btnWidth - safePadding;
-            const maxY = viewportHeight - btnHeight - safePadding;
-            
-            // Generate coordinates tightly bound within the screen
-            const randomX = Math.max(safePadding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(safePadding, Math.floor(Math.random() * maxY));
-            
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
+            // Move it smoothly via CSS transform
+            btnNo.style.transform = `translate(${currentTransformX}px, ${currentTransformY}px)`;
         };
 
-        // For PC/Laptop (Mouse)
+        // For PC/Laptop (Mouse hover)
         btnNo.addEventListener('mouseover', moveButton);
         
-        // For Mobile/Phone (Touch)
+        // For Mobile/Phone (Touch screen)
         btnNo.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // STOPS the click from registering
+            e.preventDefault(); // Prevents accidental click registering
             moveButton();
         });
 
@@ -254,10 +263,8 @@
         btnYes.addEventListener('click', () => {
             question.style.display = 'none';
             buttonContainer.style.display = 'none';
-            btnNo.style.display = 'none'; 
-            
+            btnNo.style.display = 'none';
             successMessage.style.display = 'block';
-            mainGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
         });
     </script>
 </body>
