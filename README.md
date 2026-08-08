@@ -1,0 +1,3 @@
+An interective webpage for partner to asking for outing.. he/she can`t select "No", its will move around when hover...
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dadd53f1-82ea-4aad-8cc7-f8a8efaa9a4c" />
